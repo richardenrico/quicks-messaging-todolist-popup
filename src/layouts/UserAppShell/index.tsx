@@ -8,13 +8,11 @@ function UserAppShell() {
     return (
         <AppShell
             layout="alt"
-            footer={{ height: 60 }}
             navbar={{
                 width: 250,
                 breakpoint: 'sm',
                 collapsed: { mobile: !opened },
             }}
-            padding="md"
             bg={'#333333'}
         >
             <Burger
