@@ -1,4 +1,4 @@
-import { AppShell, Burger, Group } from '@mantine/core'
+import { AppShell, Burger, Group, TextInput } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { Outlet } from 'react-router-dom'
 
@@ -8,29 +8,26 @@ function UserAppShell() {
     return (
         <AppShell
             layout="alt"
-            header={{ height: 60 }}
             footer={{ height: 60 }}
             navbar={{
-                width: 200,
+                width: 250,
                 breakpoint: 'sm',
                 collapsed: { mobile: !opened },
             }}
             padding="md"
+            bg={'#333333'}
         >
-            <AppShell.Header>
-                <Group h="100%" px="md">
-                    <Burger
-                        opened={opened}
-                        onClick={toggle}
-                        hiddenFrom="sm"
-                        size="sm"
-                    />
-                    {/* <MantineLogo size={30} /> */}
-                </Group>
-            </AppShell.Header>
-            <AppShell.Navbar p="md">
+            <Burger
+                color={'white'}
+                opened={opened}
+                onClick={toggle}
+                hiddenFrom="sm"
+                size="sm"
+            />
+            <AppShell.Navbar p="md" bg={'#333333'}>
                 <Group>
                     <Burger
+                        color={'white'}
                         opened={opened}
                         onClick={toggle}
                         hiddenFrom="sm"
