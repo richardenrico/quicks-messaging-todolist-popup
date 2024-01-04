@@ -1,14 +1,17 @@
-import Home from "pages/Home";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import UserAppShell from 'layouts/UserAppShell'
+import Home from 'pages/Home'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route index element={<Home />} />
+                <Route element={<UserAppShell />}>
+                    <Route index element={<Home />} />
+                </Route>
             </Routes>
         </BrowserRouter>
-    );
-};
+    )
+}
 
-export default Router;
+export default Router
