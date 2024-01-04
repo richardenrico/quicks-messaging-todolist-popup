@@ -47,7 +47,10 @@ function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActio
                         size={60}
                         radius="xl"
                         color="indicator_blue"
-                        onClick={() => setMode('')}
+                        onClick={() => {
+                            setMode('')
+                            setOpened(!opened)
+                        }}
                     >
                         <Image
                             src={QuestionWhiteIcon}
@@ -62,7 +65,10 @@ function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActio
                         size={60}
                         radius="xl"
                         color="indicator_orange"
-                        onClick={() => setMode('')}
+                        onClick={() => {
+                            setMode('')
+                            setOpened(!opened)
+                        }}
                     >
                         <Image
                             src={ReaderWhiteIcon}
