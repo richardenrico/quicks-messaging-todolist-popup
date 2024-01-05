@@ -15,13 +15,13 @@ function UserAppShell() {
             }}
             bg={'#333333'}
         >
-            <Burger
+            {/* <Burger
                 color={'white'}
                 opened={opened}
                 onClick={toggle}
                 hiddenFrom="sm"
                 size="sm"
-            />
+            /> */}
             <AppShell.Navbar p="md" bg={'#333333'}>
                 <Group>
                     <Burger
