@@ -8,9 +8,12 @@ export type Colors =
     | 'indicator_blue'
     | 'indicator_red'
     | 'indicator_yellow'
-    // | 'chats_yellow'
-    // | 'chats_yellow'
-    // | 'chats_yellow'
+    | 'chats_yellow'
+    | 'chats_yellow_dimmed'
+    | 'chats_purple'
+    | 'chats_purple_dimmed'
+    | 'chats_green'
+    | 'chats_green_dimmed'
 
 export const COLORS: Record<Colors, string> = {
     white: '#FFFFFF',
@@ -22,4 +25,10 @@ export const COLORS: Record<Colors, string> = {
     indicator_blue: '#8785FF',
     indicator_red: '#EB5757',
     indicator_yellow: '#F2C94C',
+    chats_yellow: '#E5A443',
+    chats_yellow_dimmed: '#FCEED3',
+    chats_purple: '#9B51E0',
+    chats_purple_dimmed: '#EEDCFF',
+    chats_green: '#43B78D',
+    chats_green_dimmed: '#D2F2EA',
 }
