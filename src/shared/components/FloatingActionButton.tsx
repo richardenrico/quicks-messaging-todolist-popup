@@ -29,7 +29,7 @@ function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActio
             >
                 {mode === '' && (
                     <ActionIcon
-                        size={60}
+                        size={50}
                         radius="xl"
                         color="primary_blue"
                         onClick={() => setOpened(!opened)}
@@ -44,7 +44,7 @@ function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActio
                 {mode === 'inbox' && (
                     <ActionIcon
                         className="shadow-[-10px_0px_0px_0px] shadow-primary_gray_1"
-                        size={60}
+                        size={50}
                         radius="xl"
                         color="indicator_blue"
                         onClick={() => {
@@ -62,7 +62,7 @@ function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActio
                 {mode === 'task' && (
                     <ActionIcon
                         className="shadow-[-10px_0px_0px_0px] shadow-primary_gray_1"
-                        size={60}
+                        size={50}
                         radius="xl"
                         color="indicator_orange"
                         onClick={() => {
@@ -82,7 +82,7 @@ function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActio
                         {mode !== 'inbox' && (
                             <ActionIcon
                                 mr={(mode !== '') ? 'xs' : 0}
-                                size={56}
+                                size={46}
                                 radius="xl"
                                 color="#F2F2F2"
                                 onClick={() => setMode('inbox')}
@@ -99,7 +99,7 @@ function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActio
                         {mode !== 'task' && (
                             <ActionIcon
                                 mr={(mode !== '') ? 'xs' : 0}
-                                size={56}
+                                size={46}
                                 radius="xl"
                                 color="#F2F2F2"
                                 onClick={() => setMode('task')}
