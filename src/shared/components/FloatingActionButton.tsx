@@ -1,9 +1,4 @@
-import {
-    ActionIcon,
-    Affix,
-    Flex,
-    Image,
-} from '@mantine/core'
+import { ActionIcon, Affix, Flex, Image } from '@mantine/core'
 import FeatherIcon from 'assets/icon/feather_icon.svg'
 import QuestionIcon from 'assets/icon/question_icon.svg'
 import QuestionWhiteIcon from 'assets/icon/question_icon_white.svg'
@@ -15,9 +10,16 @@ interface IFloatingActionButtonProps {
     setMode: (mode: 'task' | 'inbox' | '') => void
     opened: boolean
     setOpened: (opened: boolean) => void
+    onClose: (id: number) => void
 }
 
-function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActionButtonProps) {
+function FloatingActionButton({
+    mode,
+    opened,
+    setMode,
+    setOpened,
+    onClose,
+}: IFloatingActionButtonProps) {
     return (
         <Affix position={{ bottom: 20, right: 20 }}>
             <Flex
@@ -32,7 +34,10 @@ function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActio
                         size={50}
                         radius="xl"
                         color="primary_blue"
-                        onClick={() => setOpened(!opened)}
+                        onClick={() => {
+                            setOpened(!opened)
+                            onClose(-1)
+                        }}
                     >
                         <Image
                             src={FeatherIcon}
@@ -50,6 +55,7 @@ function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActio
                         onClick={() => {
                             setMode('')
                             setOpened(!opened)
+                            onClose(-1)
                         }}
                     >
                         <Image
@@ -68,6 +74,7 @@ function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActio
                         onClick={() => {
                             setMode('')
                             setOpened(!opened)
+                            onClose(-1)
                         }}
                     >
                         <Image
@@ -81,11 +88,14 @@ function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActio
                     <>
                         {mode !== 'inbox' && (
                             <ActionIcon
-                                mr={(mode !== '') ? 'xs' : 0}
+                                mr={mode !== '' ? 'xs' : 0}
                                 size={46}
                                 radius="xl"
                                 color="#F2F2F2"
-                                onClick={() => setMode('inbox')}
+                                onClick={() => {
+                                    setMode('inbox')
+                                    onClose(-1)
+                                }}
                             >
                                 <Image
                                     src={QuestionIcon}
@@ -98,11 +108,14 @@ function FloatingActionButton({mode, opened, setMode, setOpened}: IFloatingActio
                         )}
                         {mode !== 'task' && (
                             <ActionIcon
-                                mr={(mode !== '') ? 'xs' : 0}
+                                mr={mode !== '' ? 'xs' : 0}
                                 size={46}
                                 radius="xl"
                                 color="#F2F2F2"
-                                onClick={() => setMode('task')}
+                                onClick={() => {
+                                    setMode('task')
+                                    onClose(-1)
+                                }}
                             >
                                 <Image
                                     src={ReaderIcon}
