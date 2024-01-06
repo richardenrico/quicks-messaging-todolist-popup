@@ -23,3 +23,13 @@ export function getNumberDate(date: Date): string {
 
     return formattedDate
 }
+
+export function getHoursMinuteTime(date: Date): string {
+    const formattedDate = date.toLocaleString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: false,
+    })
+
+    return formattedDate
+}
