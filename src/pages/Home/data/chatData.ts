@@ -567,6 +567,7 @@ const chatsData = [
         data: {
             groupName: 'FastVisa Support',
             totalParticipants: 0,
+            isSupport: true,
             chats: [
                 {
                     time: new Date().getTime() / 1000,
