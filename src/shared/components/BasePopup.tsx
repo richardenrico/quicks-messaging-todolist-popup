@@ -9,7 +9,7 @@ function BasePopup({ children }: IBasePopupProps) {
             px={32}
             py={24}
             radius={5}
-            className="border-[1px] border-primary_gray_2 w-[554px] h-[450px] 2xl:w-[737px] 2xl:h-[734px]"
+            className="border-[1px] border-primary_gray_2 w-[737px] h-[450px] 2xl:h-[734px]"
         >
             {children}
         </Paper>
