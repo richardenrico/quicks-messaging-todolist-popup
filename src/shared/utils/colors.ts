@@ -14,6 +14,7 @@ export type Colors =
     | 'chats_purple_dimmed'
     | 'chats_green'
     | 'chats_green_dimmed'
+    | 'stickers_blue'
 
 export const COLORS: Record<Colors, string> = {
     white: '#FFFFFF',
@@ -31,4 +32,5 @@ export const COLORS: Record<Colors, string> = {
     chats_purple_dimmed: '#EEDCFF',
     chats_green: '#43B78D',
     chats_green_dimmed: '#D2F2EA',
+    stickers_blue: '#E9F3FF',
 }
