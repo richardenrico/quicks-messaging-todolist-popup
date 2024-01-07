@@ -1,15 +1,11 @@
-import {
-    Affix,
-    Container,
-    Paper,
-    TextInput,
-} from '@mantine/core'
+import { Affix, Container, Paper, TextInput } from '@mantine/core'
 import Seo from 'shared/components/Seo'
 import Search24Icon from 'assets/icon/search_24px.svg'
 import { useState } from 'react'
 import FloatingActionButton from 'shared/components/FloatingActionButton'
 import ChatList from 'shared/components/ChatList'
 import ChatDetail from 'shared/components/ChatDetail'
+import BasePopup from 'shared/components/BasePopup'
 
 const Home = () => {
     const [opened, setOpened] = useState<boolean>(false)
@@ -43,20 +39,22 @@ const Home = () => {
 
                 <Affix position={{ bottom: 80, right: 20 }}>
                     {mode === 'inbox' && (
-                        <Paper
-                            px={32}
-                            py={24}
-                            radius={5}
-                            className="border-[1px] border-primary_gray_2 w-[554px] h-[450px] 2xl:w-[737px] 2xl:h-[734px]"
-                        >
+                        <BasePopup>
                             {dataId === -1 && (
                                 <ChatList setDataId={setDataId} />
                             )}
 
                             {dataId > -1 && (
-                                <ChatDetail dataId={dataId} setDataId={setDataId} />
+                                <ChatDetail
+                                    dataId={dataId}
+                                    setDataId={setDataId}
+                                />
                             )}
-                        </Paper>
+                        </BasePopup>
+                    )}
+
+                    {mode === 'task' && (
+                        
                     )}
                 </Affix>
             </Container>
