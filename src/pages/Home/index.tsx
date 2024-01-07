@@ -18,7 +18,7 @@ const Home = () => {
 
     return (
         <>
-            <Seo title={'Hello World'} />
+            <Seo title={'Quicks App'} />
             <Container fluid h={'100vh'} p={0}>
                 <TextInput
                     leftSection={<img src={Search24Icon} />}
