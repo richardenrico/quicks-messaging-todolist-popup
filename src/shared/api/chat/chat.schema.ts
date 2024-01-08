@@ -11,3 +11,27 @@ export const listChatSchema = z
         title: z.string(),
     })
     .array()
+
+export const chatSchema = z.object({
+    id: z.number(),
+    data: z.object({
+        groupName: z.string(),
+        totalParticipants: z.number(),
+        isSupport: z.boolean().optional(),
+        chats: z
+            .object({
+                time: z.number(),
+                chats: z
+                    .object({
+                        mode: z.string(),
+                        receiverMode: z.number(),
+                        sender: z.string(),
+                        message: z.string(),
+                        timestamp: z.number(),
+                        isRead: z.boolean(),
+                    })
+                    .array(),
+            })
+            .array(),
+    }),
+})
