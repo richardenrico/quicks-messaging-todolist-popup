@@ -62,3 +62,28 @@ export function getFullDayTime(date: Date): string {
     // }
     return `${daysOfWeek[inputDay]} ${formattedDate}`
 }
+
+export function getDDMMYYYYDate(date: Date): string {
+    const formattedDate = date.toLocaleString('en-GB', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    })
+
+    return formattedDate
+}
+
+export function calculateDateRange(date: Date): string {
+    const currentDateTime: Date = new Date();
+
+    const dateRange: number = date.getTime() - currentDateTime.getTime();
+
+    const days: number = Math.floor(dateRange / (1000 * 60 * 60 * 24));
+
+    const rangeString: string = `${days + 1} Days`;
+
+    if (dateRange > 0) {
+        return rangeString;
+    }
+    return 'Invalid Due Date'
+}
