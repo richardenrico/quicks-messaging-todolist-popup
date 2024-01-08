@@ -7,9 +7,12 @@ import {
     Button,
     Text,
 } from '@mantine/core'
-import { getChatDataById } from 'pages/Home/data/chatData'
+import { useEffect, useState } from 'react'
+import { ChatResponse } from 'shared/api/chat/chat'
+import useGetChatById from 'shared/api/chat/hooks/useGetChatById.query'
 import ChatArea from 'shared/components/ChatArea'
 import ChatHeader from 'shared/components/ChatHeader'
+import Loading from 'shared/components/Loading'
 
 interface IChatDetailProps {
     dataId: number
@@ -17,20 +20,43 @@ interface IChatDetailProps {
 }
 
 function ChatDetail({ dataId, setDataId }: IChatDetailProps) {
+    const [data, setData] = useState<ChatResponse>({
+        id: 0,
+        data: {
+            groupName: '-',
+            totalParticipants: 0,
+            chats: []
+        }
+    })
+
+    const chat = useGetChatById(dataId)
+
+    useEffect(() => {
+        if (chat.data) {
+            const temp: ChatResponse = chat.data
+
+            setData(temp)
+        }
+    }, [chat.data, chat.isSuccess])
+
     return (
         <Stack className="h-full" justify="space-between" gap={'xs'}>
             <ChatHeader
-                name={getChatDataById(dataId)?.data.groupName ?? '-'}
+                name={data.data.groupName ?? '-'}
                 setDataId={setDataId}
                 participant={
-                    getChatDataById(dataId)?.data.totalParticipants ?? 0
+                    data.data.totalParticipants ?? 0
                 }
             />
 
-            <ChatArea data={getChatDataById(dataId)?.data.chats ?? []} />
+            {chat.isSuccess ? (
+                <ChatArea data={data.data.chats ?? []} />
+            ) : (
+                <Loading title='Loading Chats ...'/>
+            )}
 
             <Stack>
-                {getChatDataById(dataId)?.data.isSupport && (
+                {data.data.isSupport && (
                     <Paper p={10} radius={5} bg={'stickers_blue'}>
                         <Group gap={'sm'}>
                             <Loader size={28} color={'primary_blue'} />
