@@ -1,4 +1,8 @@
-import { Affix, Container, Paper, TextInput } from '@mantine/core'
+import {
+    Affix,
+    Container,
+    TextInput,
+} from '@mantine/core'
 import Seo from 'shared/components/Seo'
 import Search24Icon from 'assets/icon/search_24px.svg'
 import { useState } from 'react'
@@ -6,6 +10,7 @@ import FloatingActionButton from 'shared/components/FloatingActionButton'
 import ChatList from 'shared/components/ChatList'
 import ChatDetail from 'shared/components/ChatDetail'
 import BasePopup from 'shared/components/BasePopup'
+import TodoArea from 'shared/components/TodoArea'
 
 const Home = () => {
     const [opened, setOpened] = useState<boolean>(false)
@@ -54,7 +59,9 @@ const Home = () => {
                     )}
 
                     {mode === 'task' && (
-                        
+                        <BasePopup>
+                            <TodoArea />
+                        </BasePopup>
                     )}
                 </Affix>
             </Container>
