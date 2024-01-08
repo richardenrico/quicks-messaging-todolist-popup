@@ -26,7 +26,7 @@ function ChatArea({ data }: IChatAreaProps) {
                     return (
                         <>
                             <Divider
-                                key={index}
+                                key={`chat-area-time-${index}`}
                                 color={'primary_gray_1'}
                                 label={
                                     <Text fw={700} fz={14}>
@@ -48,7 +48,7 @@ function ChatArea({ data }: IChatAreaProps) {
                                     <>
                                         {isReadIndexFirst === index && (
                                             <Divider
-                                                key={index}
+                                                key={`chat-area-notification-${index}`}
                                                 color={'indicator_red'}
                                                 label={
                                                     <Text fw={700} fz={14}>
@@ -59,7 +59,7 @@ function ChatArea({ data }: IChatAreaProps) {
                                             />
                                         )}
                                         <ChatBubble
-                                            key={index}
+                                            key={`chat-area-${index}`}
                                             mode={
                                                 chat.mode === 'sender'
                                                     ? 'sender'
