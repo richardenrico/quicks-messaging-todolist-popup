@@ -1,4 +1,4 @@
-import { ActionIcon, Affix, Flex, Image } from '@mantine/core'
+import { ActionIcon, Affix, Flex, Image, Stack, Text } from '@mantine/core'
 import FeatherIcon from 'assets/icon/feather_icon.svg'
 import QuestionIcon from 'assets/icon/question_icon.svg'
 import QuestionWhiteIcon from 'assets/icon/question_icon_white.svg'
@@ -24,7 +24,7 @@ function FloatingActionButton({
         <Affix position={{ bottom: 20, right: 20 }}>
             <Flex
                 justify="flex-start"
-                align="center"
+                align="flex-end"
                 direction="row-reverse"
                 wrap="wrap"
                 gap={'md'}
@@ -87,44 +87,54 @@ function FloatingActionButton({
                 {opened && (
                     <>
                         {mode !== 'inbox' && (
-                            <ActionIcon
-                                mr={mode !== '' ? 'xs' : 0}
-                                size={46}
-                                radius="xl"
-                                color="#F2F2F2"
-                                onClick={() => {
-                                    setMode('inbox')
-                                    onClose(-1)
-                                }}
-                            >
-                                <Image
-                                    src={QuestionIcon}
-                                    style={{
-                                        width: '50%',
-                                        height: '50%',
+                            <Stack mb={2} align='center' gap={8}>
+                                {mode === '' && (
+                                    <Text fw={'bold'} inline fz={14} c={'#F2F2F2'}>Inbox</Text>
+                                )}
+                                <ActionIcon
+                                    mr={mode !== '' ? 'xs' : 0}
+                                    size={46}
+                                    radius="xl"
+                                    color="#F2F2F2"
+                                    onClick={() => {
+                                        setMode('inbox')
+                                        onClose(-1)
                                     }}
-                                />
-                            </ActionIcon>
+                                >
+                                    <Image
+                                        src={QuestionIcon}
+                                        style={{
+                                            width: '50%',
+                                            height: '50%',
+                                        }}
+                                    />
+                                </ActionIcon>
+                            </Stack>
                         )}
                         {mode !== 'task' && (
-                            <ActionIcon
-                                mr={mode !== '' ? 'xs' : 0}
-                                size={46}
-                                radius="xl"
-                                color="#F2F2F2"
-                                onClick={() => {
-                                    setMode('task')
-                                    onClose(-1)
-                                }}
-                            >
-                                <Image
-                                    src={ReaderIcon}
-                                    style={{
-                                        width: '50%',
-                                        height: '50%',
+                            <Stack mb={2} align='center' gap={8}>
+                                {mode === '' && (
+                                    <Text fw={'bold'} inline fz={14} c={'#F2F2F2'}>Task</Text>
+                                )}
+                                <ActionIcon
+                                    mr={mode !== '' ? 'xs' : 0}
+                                    size={46}
+                                    radius="xl"
+                                    color="#F2F2F2"
+                                    onClick={() => {
+                                        setMode('task')
+                                        onClose(-1)
                                     }}
-                                />
-                            </ActionIcon>
+                                >
+                                    <Image
+                                        src={ReaderIcon}
+                                        style={{
+                                            width: '50%',
+                                            height: '50%',
+                                        }}
+                                    />
+                                </ActionIcon>
+                            </Stack>
                         )}
                     </>
                 )}
