@@ -27,10 +27,6 @@ function TodoArea() {
             color: string
         }
     ) => {
-        console.log(index);
-        console.log(newTags);
-        
-
         setData((prevTasks) => {
             const newTasks = [...prevTasks]
 
@@ -54,9 +50,6 @@ function TodoArea() {
                     tags: [...newTasks[index].tags, newTags],
                 }
             }
-
-            console.log(newTasks);
-            
 
             return newTasks
         })
