@@ -4,7 +4,7 @@ export const listChatSchema = z
     .object({
         id: z.number(),
         chat: z.string(),
-        groupSender: z.string(),
+        groupSender: z.string().optional(),
         isGroup: z.boolean(),
         newMessage: z.boolean(),
         time: z.number(),

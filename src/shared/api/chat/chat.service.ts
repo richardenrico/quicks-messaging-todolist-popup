@@ -13,7 +13,6 @@ class ChatService implements ChatApi {
         })
 
         return chatSchema.parse(res.data)
-        // return res.data
     }
     async getListChat(
         signal?: AbortSignal | undefined
@@ -22,8 +21,7 @@ class ChatService implements ChatApi {
             signal,
         })
 
-        // return listChatSchema.parse(res.data)
-        return res.data
+        return listChatSchema.parse(res.data)
     }
 }
 
