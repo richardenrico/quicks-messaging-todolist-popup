@@ -1,5 +1,13 @@
 import { z } from 'zod'
 
+export const listTagsSchema = z
+    .object({
+        id: z.number(),
+        name: z.string(),
+        color: z.string(),
+    })
+    .array()
+
 export const listTodoSchema = z
     .object({
         id: z.number(),
@@ -7,11 +15,6 @@ export const listTodoSchema = z
         deadline: z.number(),
         description: z.string(),
         completed: z.boolean(),
+        tags: listTagsSchema,
     })
     .array()
-
-export const listTagsSchema = z.object({
-    id: z.number(),
-    name: z.string(),
-    color: z.string(),
-}).array()
