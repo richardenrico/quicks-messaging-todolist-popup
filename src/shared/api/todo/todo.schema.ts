@@ -9,3 +9,9 @@ export const listTodoSchema = z
         completed: z.boolean(),
     })
     .array()
+
+export const listTagsSchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    color: z.string(),
+}).array()

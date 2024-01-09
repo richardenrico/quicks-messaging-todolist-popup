@@ -1,9 +1,16 @@
-import { ListTodoResponse } from 'shared/api/todo/todo'
+import { ListTagsResponse, ListTodoResponse } from 'shared/api/todo/todo'
 import { IEditTodoDataParams, TodoApi } from 'shared/api/todo/todo.interface'
-import { listTodoSchema } from 'shared/api/todo/todo.schema'
+import { listTagsSchema } from 'shared/api/todo/todo.schema'
 import { http } from 'shared/config/http'
 
 class TodoService implements TodoApi {
+    async getListTags(
+        signal?: AbortSignal | undefined
+    ): Promise<ListTagsResponse> {
+        const res = await http.get<ListTagsResponse>('tags', { signal })
+
+        return listTagsSchema.parse(res.data)
+    }
     deleteTodoById(id: number): Promise<any> {
         return http.delete(`todo/${id}`)
     }
