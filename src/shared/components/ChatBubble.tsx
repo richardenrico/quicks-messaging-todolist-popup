@@ -4,6 +4,7 @@ import { getHoursMinuteTime } from 'shared/utils/string.utils'
 
 interface IChatBubbleProps {
     mode: 'receiver' | 'sender'
+    isSupport: boolean
     recieverMode?: 1 | 2
     name?: string
     chat: string
@@ -16,6 +17,7 @@ function ChatBubble({
     recieverMode = 1,
     name,
     time,
+    isSupport = false,
 }: IChatBubbleProps) {
     return (
         <Stack align={mode === 'sender' ? 'flex-end' : 'flex-start'} gap={4}>
@@ -23,7 +25,9 @@ function ChatBubble({
                 fz={14}
                 fw={'bold'}
                 c={
-                    mode === 'sender'
+                    isSupport
+                        ? 'primary_blue'
+                        : mode === 'sender'
                         ? 'chats_purple'
                         : recieverMode === 1
                         ? 'chats_yellow'
@@ -37,12 +41,14 @@ function ChatBubble({
                 direction={mode === 'sender' ? 'row' : 'row-reverse'}
                 justify={'flex-end'}
             >
-                <ChatPopover mode={mode} />
+                {!isSupport && <ChatPopover mode={mode} />}
                 <Paper
                     radius={5}
                     p={'sm'}
                     bg={
-                        mode === 'sender'
+                        isSupport
+                            ? '#F8F8F8'
+                            : mode === 'sender'
                             ? 'chats_purple_dimmed'
                             : recieverMode === 1
                             ? 'chats_yellow_dimmed'

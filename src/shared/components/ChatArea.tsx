@@ -6,6 +6,7 @@ import {
 } from 'shared/utils/string.utils'
 
 interface IChatAreaProps {
+    isSupport: boolean
     data: Array<{
         mode: string
         receiverMode: number
@@ -27,7 +28,7 @@ interface IChatData {
     }>
 }
 
-function ChatArea({ data }: IChatAreaProps) {
+function ChatArea({ data, isSupport }: IChatAreaProps) {
     const chatData: IChatData[] = getGroupedMessageByDay(data)
     let isReadIndexFirst = -1
 
@@ -72,6 +73,7 @@ function ChatArea({ data }: IChatAreaProps) {
                                         )}
                                         <ChatBubble
                                             key={`chat-area-${index}`}
+                                            isSupport={isSupport}
                                             mode={
                                                 chat.mode === 'sender'
                                                     ? 'sender'

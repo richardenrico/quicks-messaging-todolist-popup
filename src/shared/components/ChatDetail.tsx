@@ -25,8 +25,9 @@ function ChatDetail({ dataId, setDataId }: IChatDetailProps) {
         data: {
             groupName: '-',
             totalParticipants: 0,
-            chats: []
-        }
+            isSupport: false,
+            chats: [],
+        },
     })
 
     const chat = useGetChatById(dataId)
@@ -44,15 +45,16 @@ function ChatDetail({ dataId, setDataId }: IChatDetailProps) {
             <ChatHeader
                 name={data.data.groupName ?? '-'}
                 setDataId={setDataId}
-                participant={
-                    data.data.totalParticipants ?? 0
-                }
+                participant={data.data.totalParticipants ?? 0}
             />
 
             {chat.isSuccess ? (
-                <ChatArea data={data.data.chats ?? []} />
+                <ChatArea
+                    isSupport={data.data.isSupport ?? false}
+                    data={data.data.chats ?? []}
+                />
             ) : (
-                <Loading title='Loading Chats ...'/>
+                <Loading title="Loading Chats ..." />
             )}
 
             <Stack>
