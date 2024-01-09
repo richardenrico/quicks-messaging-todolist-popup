@@ -19,6 +19,49 @@ function TodoArea() {
         }
     }, [todoList.data, todoList.isSuccess])
 
+    const updateTags = (
+        index: number,
+        newTags: {
+            id: number
+            name: string
+            color: string
+        }
+    ) => {
+        console.log(index);
+        console.log(newTags);
+        
+
+        setData((prevTasks) => {
+            const newTasks = [...prevTasks]
+
+            const isExist = newTasks[index].tags.find(
+                (task) => task.id === newTags.id
+            )
+
+            console.log(newTasks[index]);
+            
+
+            if (isExist) {
+                newTasks[index] = {
+                    ...newTasks[index],
+                    tags: newTasks[index].tags.filter(
+                        (tag) => tag.id !== newTags.id
+                    ),
+                }
+            } else {
+                newTasks[index] = {
+                    ...newTasks[index],
+                    tags: [...newTasks[index].tags, newTags],
+                }
+            }
+
+            console.log(newTasks);
+            
+
+            return newTasks
+        })
+    }
+
     return (
         <Stack gap={22} className="h-full">
             <Group justify="space-between">
@@ -35,6 +78,7 @@ function TodoArea() {
                                     deadline: 0,
                                     description: '',
                                     completed: false,
+                                    tags: [],
                                 },
                             ]
                         })
@@ -52,18 +96,20 @@ function TodoArea() {
                         {data.map((d, index) => (
                             <TodoCard
                                 key={index}
-                                id={d.id}
+                                todoId={d.id}
                                 title={d.title}
                                 deadline={d.deadline}
                                 description={d.description}
                                 completed={d.completed}
                                 lastIndex={index + 1 === data.length}
+                                tags={d.tags}
+                                updateTags={updateTags}
                             />
                         ))}
                     </Stack>
                 </ScrollArea>
             ) : (
-                <Loading title="Loading Todo ..." />
+                <Loading title="Loading Todo List ..." />
             )}
         </Stack>
     )

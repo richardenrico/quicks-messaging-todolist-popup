@@ -16,23 +16,36 @@ import ExpandLessIcon from 'assets/icon/expand_less_24px.svg'
 import { calculateDateRange, getDDMMYYYYDate } from 'shared/utils/string.utils'
 import TodoPopover from 'shared/components/TodoPopover'
 import { COLORS } from 'shared/utils/colors'
+import TodoTags from 'shared/components/TodoTags'
+import { ListTagsResponse } from 'shared/api/todo/todo'
 
 interface ITodoCardProps {
-    id: number
+    todoId: number
     title: string
     deadline: number | null
     description: string
     completed: boolean
     lastIndex: boolean
+    tags: ListTagsResponse
+    updateTags: (
+        index: number,
+        newTags: {
+            id: number
+            name: string
+            color: string
+        }
+    ) => void
 }
 
 function TodoCard({
-    id,
+    todoId,
     completed,
     deadline,
     description,
     title,
     lastIndex,
+    tags,
+    updateTags,
 }: ITodoCardProps) {
     const [expand, setExpand] = useState<boolean>(false)
     const [checked, setChecked] = useState<boolean>(completed)
@@ -102,7 +115,7 @@ function TodoCard({
                             }}
                         />
                     </ActionIcon>
-                    <TodoPopover todoId={id} />
+                    <TodoPopover todoId={todoId} />
                 </Group>
             </Group>
 
@@ -110,6 +123,7 @@ function TodoCard({
                 <Stack mx={'xl'}>
                     <TodoDate setValue={setDueDate} value={dueDate} />
                     <TodoDescription setValue={setDesc} value={desc} />
+                    <TodoTags todoId={todoId} data={tags} updateTags={updateTags} />
                 </Stack>
             )}
 
