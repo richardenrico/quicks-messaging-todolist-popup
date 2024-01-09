@@ -1,28 +1,40 @@
 import { ScrollArea, Stack, Divider, Text } from '@mantine/core'
 import ChatBubble from 'shared/components/ChatBubble'
-import { getFullDayTime } from 'shared/utils/string.utils'
+import {
+    getFullDayTime,
+    getGroupedMessageByDay,
+} from 'shared/utils/string.utils'
 
 interface IChatAreaProps {
     data: Array<{
-        time: number
-        chats: Array<{
-            mode: string
-            receiverMode: number
-            sender: string
-            message: string
-            timestamp: number
-            isRead: boolean
-        }>
+        mode: string
+        receiverMode: number
+        sender: string
+        message: string
+        timestamp: number
+        isRead: boolean
+    }>
+}
+interface IChatData {
+    time: number
+    chats: Array<{
+        mode: string
+        receiverMode: number
+        sender: string
+        message: string
+        timestamp: number
+        isRead: boolean
     }>
 }
 
 function ChatArea({ data }: IChatAreaProps) {
+    const chatData: IChatData[] = getGroupedMessageByDay(data)
     let isReadIndexFirst = -1
 
     return (
         <ScrollArea className="h-full" offsetScrollbars>
             <Stack>
-                {data.map((data, index) => {
+                {chatData.map((data, index) => {
                     return (
                         <>
                             <Divider
@@ -31,7 +43,7 @@ function ChatArea({ data }: IChatAreaProps) {
                                 label={
                                     <Text fw={700} fz={14}>
                                         {getFullDayTime(
-                                            new Date(data.time * 1000)
+                                            new Date(data.time)
                                         )}
                                     </Text>
                                 }

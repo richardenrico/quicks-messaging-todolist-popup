@@ -56,7 +56,7 @@ export function getFullDayTime(date: Date): string {
 
     if (currentDay - inputDay === 0) {
         return `Today ${formattedDate}`
-    } 
+    }
     // else if (currentDay - inputDay === 1) {
     //     return `Yesterday ${formattedDate}`
     // }
@@ -74,16 +74,56 @@ export function getDDMMYYYYDate(date: Date): string {
 }
 
 export function calculateDateRange(date: Date): string {
-    const currentDateTime: Date = new Date();
+    const currentDateTime: Date = new Date()
 
-    const dateRange: number = date.getTime() - currentDateTime.getTime();
+    const dateRange: number = date.getTime() - currentDateTime.getTime()
 
-    const days: number = Math.floor(dateRange / (1000 * 60 * 60 * 24));
+    const days: number = Math.floor(dateRange / (1000 * 60 * 60 * 24))
 
-    const rangeString: string = `${days + 1} Days`;
+    const rangeString: string = `${days + 1} Days`
 
     if (dateRange > 0) {
-        return rangeString;
+        return rangeString
     }
     return 'Invalid Due Date'
+}
+
+interface Chat {
+    mode: string
+    receiverMode: number
+    sender: string
+    message: string
+    timestamp: number
+    isRead: boolean
+}
+
+interface GroupedChats {
+    time: number
+    chats: Chat[]
+}
+
+export function getGroupedMessageByDay(data: Chat[]) {
+    const groupedChats: GroupedChats[] = []
+
+    data.forEach((chat) => {
+        const chatTime = new Date(chat.timestamp * 1000)
+        const chatDay = new Date(
+            chatTime.getFullYear(),
+            chatTime.getMonth(),
+            chatTime.getDate()
+        ).getTime()
+    
+        const existingGroup = groupedChats.find((group) => group.time === chatDay)
+    
+        if (existingGroup) {
+            existingGroup.chats.push(chat)
+        } else {
+            groupedChats.push({
+                time: chatDay,
+                chats: [chat],
+            })
+        }
+    })
+
+    return groupedChats
 }

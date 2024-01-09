@@ -20,17 +20,12 @@ export const chatSchema = z.object({
         isSupport: z.boolean().optional(),
         chats: z
             .object({
-                time: z.number(),
-                chats: z
-                    .object({
-                        mode: z.string(),
-                        receiverMode: z.number(),
-                        sender: z.string(),
-                        message: z.string(),
-                        timestamp: z.number(),
-                        isRead: z.boolean(),
-                    })
-                    .array(),
+                mode: z.string(),
+                receiverMode: z.number(),
+                sender: z.string(),
+                message: z.string(),
+                timestamp: z.number(),
+                isRead: z.boolean(),
             })
             .array(),
     }),
